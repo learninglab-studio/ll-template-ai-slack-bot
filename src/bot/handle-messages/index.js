@@ -5,6 +5,7 @@ module.exports.handleAll = async ({ message, say }) => {
 }
 
 module.exports.handleTesting = async ({ message, say }) => {
+    llog.cyan("got testing testing", message)
     // say() sends a message to the channel where the event was triggered
     await say(`the bot is running, <@${message.user}>.`);
 }
