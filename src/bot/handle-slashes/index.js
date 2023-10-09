@@ -1,6 +1,6 @@
 const { llog } = require('../../utils')
 
-module.exports.aiBotExample = async ({ command, ack, client}) => {
+module.exports.aiBotExample = async ({ command, ack, client }) => {
     await ack();
     llog.cyan(llog.divider, `a slash command has been fired`, command, llog.divider)
     let terms = command.text.split(" ");

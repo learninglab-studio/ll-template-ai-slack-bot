@@ -1,5 +1,6 @@
 const { llog } = require('../../ll-modules/ll-utilities')
 const elleResponseV1 = require('../elle-responses/elle-response-v1');
+const elleResponseV2 = require('../elle-responses/elle-response-v2');
 
 
 exports.testing = async ({ message, say }) => {
@@ -17,7 +18,8 @@ exports.parseAll = async ({ client, message, say }) => {
         llog.yellow(message)
         let result = await client.conversations.history({channel: message.channel, limit: 10})
         llog.magenta(result)
-        let openAiResult = await elleResponseV1({ text: message.text, messages: result.messages });
+        // let openAiResult = await elleResponseV1({ text: message.text, messages: result.messages });
+        let openAiResult = await elleResponseV2({ text: message.text, messages: result.messages });
         llog.magenta(openAiResult)
         let slackResult = await say(openAiResult.choices[0].message.content);
     } else {
