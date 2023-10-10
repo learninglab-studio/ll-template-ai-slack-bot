@@ -4,13 +4,11 @@ const llog = require("../../../utils/ll-logs");
 module.exports.aiDialogueResponseV1 = async ({ client, message, say }) => {
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     llog.cyan(llog.divider, `SLACK_AI_CONVERSATION_CHANNEL message`, message)
-    let messageHistory = await client.conversations.history({channel: message.channel, limit: 20})
-    llog.magenta(messageHistory)
+    let theMessages = await client.conversations.history({channel: message.channel, limit: 20})
+    llog.magenta(theMessages)
 
     
-
-    
-    let messageHistory = messages.map(message => {
+    let messageHistory = theMessages.map(message => {
         if (message.user == process.env.SLACK_BOT_USER_ID) {
             return {role: 'assistant', content: message.text}
         } else {
